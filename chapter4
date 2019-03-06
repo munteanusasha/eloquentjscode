@@ -1,0 +1,139 @@
+//==========================================================================
+//=================   Data Structure / Objects  && Arrays     ==============
+//========================       Chapter      ==============================
+//==========================================================================
+//====================      Objects         ================================
+
+{
+    var day1 = {
+        squirrel : false,
+        events : ["Lucru", "Am atins un copac", "Pizza", "Cross", "Televizor"]
+    };
+    console.log(day1.squirrel);
+    console.log(day1.wolf);
+    day1.wolf = false;
+    console.log(day1.wolf);
+}
+
+//==========================    pop() & push() methods  ====================
+{
+    var day1 = {
+        events : ["Lucru", "Copac", "Pizza", "Cross", "TV"],
+        squirrel : false
+    };
+    console.log(day1.squirrel);
+    console.log(day1.wolf);
+    day1.wolf = false;
+    console.log(day1.wolf);
+    day1.events.pop();
+    console.log(day1.events);
+    day1.events.push("Televizor");
+    console.log(day1.events);
+    // -> false
+    // -> undefined
+    // -> false
+    // -> (4) ["Lucru", "Copac", "Pizza", "Cross"]
+    // -> (5) ["Lucru", "Copac", "Pizza", "Cross", "Televizor"]
+}
+
+//==========================    Object Description      ====================
+{
+    var description = {
+        work : "poshol na roboty",
+        "am atins copacul" : "am atins copacul"
+    };
+    console.log(description);
+}
+
+//==========================    delete & in Operator     ===================
+{
+    var anObject = {right : 1, left : 2};
+        console.log(anObject.left);
+        // -> 2
+        delete anObject.left;
+        console.log(anObject.left);
+        // -> undefined
+        console.log("left" in anObject);
+        // -> false
+        console.log("right" in anObject);
+        // -> true
+}
+
+//=========================     typeof      ================================
+{
+    console.log(typeof [1,2]);
+    // -> object
+}
+
+//=========================     Jack journal        ========================
+{
+    var journal = [
+        {events : ["Lucru", "Am atins copacul", "Pizza", "Cross", "Televizor"],
+        squirrel : false },
+        {events : ["Lucru", "Inghetata", "Varza colorata", "Lasagna", "Am atins copacul", "Mi-am spalat dintii"],
+        squirrel : false},
+        {events : ["Weekend", "Bicicleta", "Pauza", "Arahide", "Beer"],
+        squirrel : true}
+    ];
+}
+
+//=========================     Mutability      ============================
+{
+    var object1 = {value : 10};
+    var object2 = object1;
+    var object3 = {value : 10};
+
+    console.log(object1 == object2);    // true
+    console.log(object1 == object3);    // false
+
+    object1.value = 15;
+
+    console.log(object2.value);     // 15
+    console.log(object3.value);     // 10
+    typeof object2;                 // "object"
+}
+
+//=========================     addEntry        ============================
+{
+    var journal = [];
+    function addEntry(events, didITurnIntoASquirrel){
+        journal.push({
+            events : events,
+            squirrel : didITurnIntoASquirrel
+        });
+    }
+    addEntry(["Work", "Tree", "Pizza", "Cross", "TV"], false);
+    addEntry(["Work", "Ice Cream", "Colorful Cabbage", "Lasagna", "Tree", "Teeth clear"], false);
+    addEntry(["Weekend", "Bicycle", "Break", "Nuts", "Beer"], true);
+}
+
+//=========================     Computing Correlation   ====================
+{
+    function phi(table){
+        return (table[3] * table[0] - table[2] * table[1]) /
+            Math.sqrt((table[2] + table[3]) *
+                      (table[0] + table[1]) *
+                      (table[1] + table[3]) *
+                      (table[0] + table[2]));
+    }
+    console.log(phi([76, 9, 4, 1]));
+    //  0.06859943405700354
+}
+
+//=========================     tablFor     ================================
+{
+    function hasEvent(event, entry){
+        return entry.events.indexOf(event) != 1;
+    }
+    function tableFor(event, journal){
+        var table = [0, 0, 0, 0];
+        for(var i = 0; i < journal.length; i++){
+            var entry = journal[i], index = 0;
+            if(hasEvent(event, entry)) index += 1;
+            if(entry.squirrel) index += 2;
+            table[index] += 1;
+        }
+        return table;
+    }
+    console.log(tableFor("pizza", JOURNAL));
+}
