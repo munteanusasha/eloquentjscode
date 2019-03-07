@@ -282,5 +282,5 @@
     return table;
     }
     console.log(tableFor("pizza", JOURNAL));
-    // => (4) [76, 9, 4, 1]
+    // -> (4) [76, 9, 4, 1]
 }
