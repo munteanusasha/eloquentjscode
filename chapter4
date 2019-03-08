@@ -505,7 +505,7 @@
 
 }
 
-//================  for event in correlation < 0.1 || > -0.1    ===========
+//================  for event in correlation > 0.1 || < -0.1    ===========
 {
     for(var event in correlations){
         var correlation = correlations[event];
