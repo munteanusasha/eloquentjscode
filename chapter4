@@ -284,3 +284,32 @@
     console.log(tableFor("pizza", JOURNAL));
     // -> (4) [76, 9, 4, 1]
 }
+
+//==========================    Objects as maps    ========================
+{
+    var map = {};
+    function storePhi(events, phi){
+        map[events] = phi;
+    }
+    storePhi("Pizza", 0.069);
+    storePhi("Touched Tree", -0.081);
+    console.log("Pizza" in map);
+    console.log(map["Touched Tree"]);
+    // -> true
+    // -> -0.081
+}
+
+//==========================        For in      ===========================
+{
+    var map = {};
+    function storePhi(event, phi){
+        map[event] = phi;
+    }
+    storePhi("Pizza", 0.069);
+    storePhi("Touched Tree", -0.081);
+
+    for(event in map)
+        console.log("The correlation for '" + event + "' is" + map[event]);
+    // -> The correlation for 'Pizza' is0.069
+    // -> The correlation for 'Touched Tree' is-0.081
+}
