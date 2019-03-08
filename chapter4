@@ -607,5 +607,37 @@
 //============================================================================
 //=====================     Object arguments        ==========================
 {
-    
+    function noArguments(){}
+    	noArguments(1, 2, 3);
+
+    function threeArguments(a, b, c){}
+        threeArguments();
+
+}
+
+//======================    arguments.length        =========================
+{
+    function argumentCounter(){
+        console.log("You gave me", arguments.length, "arguments.");
+    }
+    argumentCounter("Straw man", "Tautology", "Ad hominem");
+    // -> You gave me 3 arguments.
+}
+
+//===============    simplified ver of eddEntry with arguments  =============
+{
+    var journal = [];
+
+    function addEntry(squirrel){
+        var entry = {events : [], squirrel : squirrel};
+        for(var i = 1; i < arguments.length; i++)
+            entry.events.push(arguments[i]);
+        journal.push(entry);
+        console.log(entry.events, entry.squirrel);
+    }
+    addEntry(true, "Work", "Touched tree", "Pizza", "Running", "TV");
+    console.log(journal);
+    // -> (5) ["Work", "Touched tree", "Pizza", "Running", "TV"] true
+    // -> [{…}]
+    // ->   0: {events: Array(5), squirrel: true}
 }
