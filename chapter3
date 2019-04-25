@@ -196,6 +196,24 @@
 // 1
 // 64
 
+//====================		Recursion with prints	========================
+
+{
+	var i = 0;
+	function power(base, exponent){
+		if(exponent == 0) return 1;
+		else{
+		console.log("iteration: " + i++ + "\twhere base is: " + base + "\tand exponent is: " + exponent);
+		return base * power(base, exponent - 1);
+			}
+	}
+	console.log("result is :", power(2,3));
+	// iteration: 0	where base is: 2	and exponent is: 3
+	// iteration: 1	where base is: 2	and exponent is: 2
+	// iteration: 2	where base is: 2	and exponent is: 1
+	// result is : 8
+}
+
 //====================		Find Solution		============================
 {
 	function findSolution(target){
@@ -216,6 +234,41 @@
 //	14 (((1*3)+5)+5)
 }
 
+//====================	findSolution with prints	========================
+
+{
+	function findSolution(target){
+		function find(start, history){
+			if(start == target) {
+				console.log("start is = " + start + "\thistory is = " + history + "\nsolution is found " + history);
+				return history;
+			}
+			else if(start > target) return null;
+			else
+				console.log("start is = " + start + "\thistory is = " + history);
+				return find(start + 5, "(" + history + " + 5)") || 
+					   find(start * 3, "(" + history + " * 3)");
+		}
+		return find(1,"1");
+	}
+	console.log(findSolution(24));
+
+	// start is = 1	 	 history is = 1
+	// start is = 6	 	 history is = (1 + 5)
+	// start is = 11	 history is = ((1 + 5) + 5)
+	// start is = 16	 history is = (((1 + 5) + 5) + 5)
+	// start is = 21	 history is = ((((1 + 5) + 5) + 5) + 5)
+	// start is = 18	 history is = ((1 + 5) * 3)
+	// start is = 23	 history is = (((1 + 5) * 3) + 5)
+	// start is = 3	 	 history is = (1 * 3)
+	// start is = 8	 	 history is = ((1 * 3) + 5)
+	// start is = 13	 history is = (((1 * 3) + 5) + 5)
+	// start is = 18	 history is = ((((1 * 3) + 5) + 5) + 5)
+	// start is = 23	 history is = (((((1 * 3) + 5) + 5) + 5) + 5)
+	// start is = 24	 history is = (((1 * 3) + 5) * 3)
+	// solution is found (((1 * 3) + 5) * 3)
+	// ->(((1 * 3) + 5) * 3)
+}
 
 //====================    print Farm Inventory 1.0  ========================
 {
